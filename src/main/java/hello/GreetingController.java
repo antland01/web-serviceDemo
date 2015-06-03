@@ -1,5 +1,15 @@
 package hello;
 
+/*
+ * Greeting Controller
+ *
+ * An example of a controller that will handle everything in the project.
+ *
+ * PHP version 5
+ *
+ *
+ * @author     Anthony Smith <antland01@gmail.com>
+ */
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,16 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
-/*
- * Greeting Controller
- *
- * An example of a controller that will handle everything in the project.
- *
- * PHP version 5
- *
- *
- * @author     Anthony Smith <antland01@gmail.com>
- */
+
 
 @Controller
 public class GreetingController {
@@ -63,7 +64,6 @@ public class GreetingController {
  */
     @RequestMapping("/test")
     public String test(@RequestParam(value="total", required=false, defaultValue="15") String total, Model model) {
-       // model.addAttribute("name", name);
         String[] numberz = total.split("");
         int result = 0;
         
@@ -86,7 +86,7 @@ public class GreetingController {
         jdbcTemplate.execute("drop table stuff if exists");
         jdbcTemplate.execute("create table stuff(" +
                 "id int,content varchar(255))");
-        model.addAttribute("Greetingform", new Greetingform());
+        model.addAttribute("Greetingform", new Greeting());
         return "Greetingform";
     }
 
@@ -96,7 +96,7 @@ public class GreetingController {
  * Takes in the Greeting adds it to the view and inserts it into the database. 
  */
     @RequestMapping(value="/Greetingform", method=RequestMethod.POST)
-    public String greetingSubmit(@ModelAttribute Greetingform greetingForm, Model model) {
+    public String greetingSubmit(@ModelAttribute Greeting greetingForm, Model model) {
     
     jdbcTemplate.update("INSERT INTO stuff(id,content) values(?,?)",greetingForm.getId(),greetingForm.getContent());
                    
@@ -114,12 +114,12 @@ public class GreetingController {
     public String resultdb(@RequestParam(value="id", required=false, defaultValue="1") String id, Model model) {
         
        System.out.println("Querying for customer records where first_name = 'Josh':");
-        List<Greetingform> results = jdbcTemplate.query(
+        List<Greeting> results = jdbcTemplate.query(
                 "select id, content from stuff where id = ?", new Object[] { id },
-                new RowMapper<Greetingform>() {
+                new RowMapper<Greeting>() {
                     @Override
-                    public Greetingform mapRow(ResultSet rs, int rowNum) throws SQLException {
-                        return new Greetingform(rs.getLong("id"), rs.getString("content"));
+                    public Greeting mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        return new Greeting(rs.getLong("id"), rs.getString("content"));
                     }
                 });
         

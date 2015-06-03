@@ -29,8 +29,8 @@ public class GreetingWSController {
  * Like greeting but returns the result as JSON. 
  */
     @RequestMapping("/greetingws")
-    public greetingws greetingws(@RequestParam(value="name", defaultValue="World") String name) {
-        return new greetingws(counter.incrementAndGet(),
+    public Greeting greetingws(@RequestParam(value="name", defaultValue="World") String name) {
+        return new Greeting(counter.incrementAndGet(),
                             String.format(template, name));
     }
 }

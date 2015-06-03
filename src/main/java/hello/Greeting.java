@@ -1,16 +1,16 @@
 package hello;
 
-public class Greetingform {
+public class Greeting {
 
     private long id;
     private String content;
    
-    public Greetingform() {
+    public Greeting() {
       
 
     }
     
-    public Greetingform(long id, String content) {
+    public Greeting(long id, String content) {
         this.id = id;
         this.content = content;
 
