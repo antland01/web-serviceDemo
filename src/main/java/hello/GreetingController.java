@@ -75,33 +75,21 @@ public class GreetingController {
         return "test";
     }
     
-/*
- * Greeting form method
- *
- * Loads the Greeting orm and creates the table for it to be added to. 
- */
-	    @RequestMapping(value="/Greetingform", method=RequestMethod.GET)
-    public String Greetingform(Model model) {
+    
+    @RequestMapping(value="/greetingform", method=RequestMethod.GET)
+    public String greetingform(Model model) {
 	 System.out.println("Creating tables");
         jdbcTemplate.execute("drop table stuff if exists");
         jdbcTemplate.execute("create table stuff(" +
                 "id int,content varchar(255))");
-        model.addAttribute("Greetingform", new Greeting());
-        return "Greetingform";
+        model.addAttribute("greetingform", new Greeting());
+        return "greetingform";
     }
 
-/*
- * Greeting Submit Method
- *
- * Takes in the Greeting adds it to the view and inserts it into the database. 
- */
-    @RequestMapping(value="/Greetingform", method=RequestMethod.POST)
+    @RequestMapping(value="/greetingform", method=RequestMethod.POST)
     public String greetingSubmit(@ModelAttribute Greeting greetingForm, Model model) {
-    
-    jdbcTemplate.update("INSERT INTO stuff(id,content) values(?,?)",greetingForm.getId(),greetingForm.getContent());
-                   
-        
-        model.addAttribute("Greetingform", greetingForm);
+        model.addAttribute("greetingform", greetingForm);
+		   jdbcTemplate.update("INSERT INTO stuff(id,content) values(?,?)",greetingForm.getId(),greetingForm.getContent());
         return "result";
     }
     
@@ -123,7 +111,7 @@ public class GreetingController {
                     }
                 });
         
-         System.out.println(results.get(0).getContent());
+        
 
           model.addAttribute("id",results.get(0).getId() );
           model.addAttribute("content", results.get(0).getContent());
