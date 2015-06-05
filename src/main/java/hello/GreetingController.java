@@ -101,7 +101,7 @@ public class GreetingController {
 	    @RequestMapping(value="/resultdb")
     public String resultdb(@RequestParam(value="id", required=false, defaultValue="1") String id, Model model) {
         
-       System.out.println("Querying for customer records where first_name = 'Josh':");
+     
         List<Greeting> results = jdbcTemplate.query(
                 "select id, content from stuff where id = ?", new Object[] { id },
                 new RowMapper<Greeting>() {
