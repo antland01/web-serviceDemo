@@ -29,9 +29,9 @@ public class DiskWSController {
    
     
 /*
- * Greeting WS Method
+ * Blueray WS Method
  *
- * Like greeting but returns the result as JSON. 
+ * Returns a the list of blueray disks as JSON for webservice purposes.
  */
     @RequestMapping("/bluerayws")
     public List<Blueray> bluerayws() {
@@ -47,9 +47,9 @@ public class DiskWSController {
     }
     
 /*
- * Greeting WS Method
+ * Dvd WS Method
  *
- * Like greeting but returns the result as JSON. 
+ * Returns a the list of Dvd disks as JSON for webservice purposes.
  */
     @RequestMapping("/dvdws")
     public List<Dvd> dvdws() {
