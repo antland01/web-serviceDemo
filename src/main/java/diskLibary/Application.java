@@ -3,13 +3,13 @@
  *
  * Used to start the Spring based Maven project.
  *
- * PHP version 5
  *
  *
  * @author     Anthony Smith <antland01@gmail.com>
  */
 
-package hello;
+package diskLibary;
+
 
 
 import org.springframework.boot.context.web.SpringBootServletInitializer;
@@ -24,6 +24,7 @@ public class Application  extends SpringBootServletInitializer {
  
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+           
         return application.sources(Application.class);
     }
  
@@ -33,5 +34,8 @@ public class Application  extends SpringBootServletInitializer {
       SpringApplication.run(Application.class, args);
 	   
      }
+    
+   
+
 	
 }
