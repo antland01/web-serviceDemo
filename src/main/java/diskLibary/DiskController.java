@@ -29,19 +29,22 @@ public class DiskController {
 @Autowired
  JdbcTemplate jdbcTemplate;
   
+/*
+ * Index Method
+ *
+ * Handles requests to go to the index.
+ */
   @RequestMapping(value="/",  method=RequestMethod.GET)
     public String index(Model model) {
         return "index";
     }
-    
-    @RequestMapping(value="/error/")
-    public String error(Model model) {
-        return "index";
-    }
       
       
-   
-      
+/*
+ * Blueray Method
+ *
+ * Handles requests to diplay the blueray list and the form to add a new blueray disk to the collection.
+ */ 
    @RequestMapping(value="/bluerayform",  method=RequestMethod.GET)
     public String blueray(Model model) {
 
@@ -64,7 +67,11 @@ public class DiskController {
         return "blueray";
     }
       
-
+/*
+ * Blueray Form Method
+ *
+ * Handles the POST requests to add to Blueray List.
+ */
     @RequestMapping(value="/bluerayform", method=RequestMethod.POST)
     public String blueraySubmit(@ModelAttribute Blueray bluerayForm, Model model) {
        String name = bluerayForm.getName();
@@ -77,7 +84,12 @@ public class DiskController {
         return "redirect:/disk/bluerayform";
     }
 
-      
+    
+/*
+ * DVD Method
+ *
+ * Handles requests to diplay the Dvd list and the form to add a new blueray disk to the collection.
+ */ 
    @RequestMapping(value="/dvdform",  method=RequestMethod.GET)
     public String dvd(Model model) {
        
@@ -100,6 +112,11 @@ public class DiskController {
         return "dvd";
     }
     
+/*
+ * dvd submit Method
+ *
+ * Handles the POST requests to add to DVD List.
+ */
       @RequestMapping(value="/dvdform", method=RequestMethod.POST)
     public String dvdSubmit(@ModelAttribute Dvd dvdForm, Model model) {
        String name = dvdForm.getName();
