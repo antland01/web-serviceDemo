@@ -53,7 +53,7 @@ public class DiskWSController {
  */
     @RequestMapping("/dvdws")
     public List<Dvd> dvdws() {
-      List<Dvd> dvdResults = jdbcTemplate.query("select Title, Description from bluerays",
+      List<Dvd> dvdResults = jdbcTemplate.query("select Title, Description from dvds",
                 new RowMapper<Dvd>() {
                     @Override
                     public Dvd mapRow(ResultSet rs, int rowNum) throws SQLException {
